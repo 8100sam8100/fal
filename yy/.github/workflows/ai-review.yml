@@ -1,0 +1,16 @@
+name: AI Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: AI Code Reviewer
+        uses: pr-agent-pro/pr-agent-pro-action@v1.1.2
+        env:
+          OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_AGENT.CONFIG_PATH: ".github/pr-agent.toml"
